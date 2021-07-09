@@ -16,4 +16,3 @@ from cloudinary.models import CloudinaryField
 class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     bio = models.TextField(max_length=500)
-    
