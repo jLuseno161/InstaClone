@@ -2,17 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-
-
-# Create your models here.
-# class Article(models.Model):
-#     title = models.CharField(max_length=60)
-#     post = models.TextField()
-#     editor = models.ForeignKey(User,on_delete=models.CASCADE)
-#     tags = models.ManyToManyField(tags)
-#     pub_date = models.DateTimeField(auto_now_add=True)
-#     article_image = models.ImageField(upload_to='articles/', blank=True)
-
 class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic = CloudinaryField('image')
-    bio = models.TextField(max_length=500)
+    bio = models.TextField(max_length=500, default="Bio", blank=True)
+
+class Image(models.Model):
+    image = CloudinaryField('images')
+    img_name = models.CharField(max_length=80,blank=True)
+    caption = models.CharField(max_length=600)
+    profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    comments = models.CharField(max_length=30,blank=True)
+    
