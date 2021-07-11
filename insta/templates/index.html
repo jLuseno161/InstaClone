@@ -2,16 +2,12 @@
 {% load static %}
 {% block content %}
 {{block.super}}
-
-<h1 class="text-center">WELCOME HOME</h1>
-
-
 <!-- upload new photo-->
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             {% for img in posts %}
-
             <div class="row">
                 <div class="col-md-12 showpost">
                     <div class="card" style="width: 100%; height: 100%;">
@@ -19,16 +15,31 @@
                             {% load static %}
                             <img class="card-img-top" src="{{img.image.url}}" alt="{{image.img_name}}"></div>
                         <div class="card-block">
-                            <h4 class="card-title">Card caption</h4>
-                            <p class="card-text">{{img.caption}}</p>
-                            <hr>
-                            <a href="#" class="btn">Add comment</a>
+                            <br>
+                            <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" />
+                            <img src="https://img.icons8.com/material-outlined/24/000000/speech-bubble--v2.png" />
+                            <img src="https://img.icons8.com/windows/32/000000/filled-sent.png" />
+
+                            <h5 class="card-title"><span class="" style="font-weight: 700;">{{img.profile}}</span>
+                                {{img.caption}}
+                            </h5>
+                            <form class="commentform" role="search" action="/"style=" margin-bottom:5%">
+                                <div class="input-group">
+                                    <input type="text" style="border:none;"class="form-control" id="comment"
+                                        placeholder="Add a comment">
+
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" style="border: none; border-top: 1px solid rgb(236, 233, 233);" type="submit"> <a href="#"
+                                                class="btn col-md-3">Post</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
-
         </div>
         <div class="col-md-1">
         </div>
@@ -45,7 +56,7 @@
                     <div class="col-md-8">
                         <h5 style="font-weight: 700;"><a href="{% url 'profile' %}">{{user.username}}</a></h5>
                         <b>{{user.profile.bio}}</b>
-                        
+
                         <!-- <a href="/">
                             <button class="btn btn-success">Edit Profile</button>
                         </a> -->
