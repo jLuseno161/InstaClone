@@ -23,3 +23,18 @@ class Image(models.Model):
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     comments = models.CharField(max_length=30,blank=True)
     image = CloudinaryField('images')
+
+    def __str__(self):
+        return self.img_name    
+
+    def save_post(self):
+        return self.save()
+
+    def delete_post(self):
+        self.delete()
+
+    def post_likes(self):
+        return self.likes.count()    
+
+
+    
