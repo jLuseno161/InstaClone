@@ -15,8 +15,9 @@
 
     {% block styles %}
     {% bootstrap_css %}
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+
     <style>
         .navbar {
             background-color: black;
@@ -28,8 +29,6 @@
             color: red;
         }
     </style>
-    {% endblock %}
-
 </head>
 
 <body>
@@ -60,7 +59,7 @@
                     </div>
                     <div class="col-sm-4 col-md-4 navbar-right">
                         {% if user.is_authenticated %}
-                                <a href="/logout">Logout</a>
+                        <a href="/logout">Logout</a>
                         {% endif %}
                     </div>
                 </div>
@@ -76,8 +75,9 @@
                 <!-- Navbar Right Side -->
             </div>
     </nav>
+    {% block content %}
 
-    {% block content %} {%endblock%}
+    {%endblock%}
 
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
