@@ -14,7 +14,11 @@ class Profile(models.Model):
         self.user
 
     def delete_profile(self):
-        self.delete()    
+        self.delete()  
+
+    def search_pofile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
+ 
 
 class Image(models.Model):
     img_name = models.CharField(max_length=80,blank=True)
@@ -32,6 +36,10 @@ class Image(models.Model):
 
     def delete_post(self):
         self.delete()
+
+    @classmethod
+    def search_post(cls, name):
+        return cls.objects.filter(img_name__img__name__icontains=name)
 
     def post_likes(self):
         return self.likes.count()    
