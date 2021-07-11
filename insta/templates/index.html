@@ -43,20 +43,12 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <h5 style="font-weight: 700;">{{user.username}}</h5>
-                        <p>{{user.profile.bio}}</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>Following</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Followers</p>
-                            </div>
-                            <br>
-                        </div>
-                        <a href="/">
+                        <h5 style="font-weight: 700;"><a href="{% url 'profile' %}">{{user.username}}</a></h5>
+                        <b>{{user.profile.bio}}</b>
+                        
+                        <!-- <a href="/">
                             <button class="btn btn-success">Edit Profile</button>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>

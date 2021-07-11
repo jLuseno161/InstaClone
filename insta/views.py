@@ -1,4 +1,4 @@
-from insta.forms import UserProfileUpdateForm, UserprofileForm
+from insta.forms import NewPostForm, ProfileForm, UpdateProfileForm
 from insta.models import Image, Profile
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
@@ -17,13 +17,34 @@ def index(request):
 #     return render(request,'index.html')
 
 @login_required(login_url='/accounts/login/')    
-def insta_profile(request):
+def show_profile(request):
     if request.method == 'POST':
-        user_profile_form = UserprofileForm(request.POST, request.FILES, instance=request.user)
-        if  user_profile_form.is_valid():
-            user_profile_form.save()
+        update_form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        if  update_form.is_valid():
+            update_form.save()
             return redirect('home')
     else:
-        user_profile_form = UserprofileForm(instance=request.user)
-        user_form = UserProfileUpdateForm(instance=request.user)
-    return render(request, 'registration/profile.html',{"user_profile_form": user_profile_form,"user_form":user_form})
+        update_form = ProfileForm(instance=request.user)
+        form = UpdateProfileForm(instance=request.user)
+    return render(request, 'registration/profile.html',{"update_form":update_form,"form":form} )
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    profile = Profile.objects.get(user = current_user)
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)        
+        if form.is_valid():
+            image=form.cleaned_data.get('image')
+            caption=form.cleaned_data.get('caption')
+            post = Image(image = image,caption= caption, profile=profile)
+            post.save()
+            
+        else:
+            print(form.errors)
+
+        return redirect('index')
+    else:
+        form = NewPostForm()
+
+    return render(request, 'new_post.html', {"form": form})
