@@ -6,6 +6,15 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic = CloudinaryField('image')
     bio = models.TextField(max_length=500, default="Bio", blank=True)
+    
+    def __str__(self):
+        return self.user.username
+
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()    
 
 class Image(models.Model):
     img_name = models.CharField(max_length=80,blank=True)
