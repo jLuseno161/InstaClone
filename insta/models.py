@@ -8,10 +8,9 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, default="Bio", blank=True)
 
 class Image(models.Model):
-    image = CloudinaryField('images')
     img_name = models.CharField(max_length=80,blank=True)
     caption = models.CharField(max_length=600)
     profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     comments = models.CharField(max_length=30,blank=True)
-    
+    image = CloudinaryField('images')

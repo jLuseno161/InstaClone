@@ -9,40 +9,59 @@
 <!-- upload new photo-->
 <div class="container">
     <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-7">
-            <div class="showpost">
-                <div class="card" style="width: 100%; height: 100%;">
-                    <div class="img">
-                        {% load static %}
-                        <img class="card-img-top" src="{% static "img/6.jpg" %}" alt="my photo"></div>
-                    <div class="card-block">
-                        <h4 class="card-title">Card caption</h4>
-                        <p class="card-text">Some fast sample message to build on the card title as well as compose the
-                            bulk
-                            of the card's material.</p>
-                        <hr>
-                        <a href="#" class="btn">Add Comment</a>
+        <div class="col-md-6">
+            {% for img in posts %}
+
+            <div class="row">
+                <div class="col-md-12 showpost">
+                    <div class="card" style="width: 100%; height: 100%;">
+                        <div class="img">
+                            {% load static %}
+                            <img class="card-img-top" src="{{img.image.url}}" alt="{{image.img_name}}"></div>
+                        <div class="card-block">
+                            <h4 class="card-title">Card caption</h4>
+                            <p class="card-text">{{img.caption}}</p>
+                            <hr>
+                            <a href="#" class="btn">Add comment</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-5">
             <div class="showprofile">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="img">
-                            {% load static %}
-                            <img class="card-img-top" src="{% static "img/6.jpg" %}" alt="my photo"></div>
+                            <div id="profile" class="rounded-circle">
+                                <img src="{{user.profile.profile_pic.url }}" alt="profile_photo">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-8">
-                        <h5 style="font-weight: bold;">My username</h5>
+                        <h5 style="font-weight: 700;">{{user.username}}</h5>
+                        <p>{{user.profile.bio}}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Following</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Followers</p>
+                            </div>
+                            <br>
+                        </div>
+                        <a href="/">
+                            <button class="btn btn-success">Edit Profile</button>
+                        </a>
                     </div>
                 </div>
-
             </div>
+            <hr>
+
         </div>
     </div>
     {%endblock%}
