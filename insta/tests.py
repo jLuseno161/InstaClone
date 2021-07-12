@@ -21,4 +21,28 @@ class ProfileTestCase(TestCase):
         after = Profile.objects.all()
         self.assertTrue(len(after) > 0)
 
+class ImageTestClass(TestCase):
+    """
+    test class for Image model unit tests.
+    """
+    def setUp(self):
+        self.user = User.objects.create_user("username", "password")
+        self.new_profile = Profile(profile_pic='profile.png',bio='this is a test profile',user=self.user)
+        self.new_profile.save()
+        self.newImage = Image(image='profile.png',caption="image", profile=self.new_profile)
+
+    def test_instance_true(self):
+        self.assertTrue(isinstance(self.newImage, Image))
+
+    def test_save_post(self):
+        self.newImage.save_post()
+        img = Image.objects.all()
+        self.assertTrue(len(img) == 1)
+
+    def test_delete_post(self):
+        self.newImage.save_post()
+        img = Profile.objects.all()
+        self.assertTrue(len(img) <= 1)
+
+
 
