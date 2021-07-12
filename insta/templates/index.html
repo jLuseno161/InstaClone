@@ -3,8 +3,13 @@
 {% block content %}
 {{block.super}}
 <!-- upload new photo-->
-
+<style>
+    .newpost {
+        border: none;
+    }
+</style>
 <div class="container">
+    <hr>
     <div class="row">
         <div class="col-md-6">
             {% for img in posts %}
@@ -18,7 +23,7 @@
                             </a>
                         </div>
                         <div class="col-lg-3">
-                            
+
                             <div class="modal fade" id="{{img.id}}" role="dialog">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
@@ -91,10 +96,23 @@
                     <div class="col-md-8">
                         <h5 style="font-weight: 700;"><a href="{% url 'profile' %}">{{user.username}}</a></h5>
                         <b>{{user.profile.bio}}</b>
+
                     </div>
                 </div>
             </div>
             <hr>
+
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <b>Write New Post </b>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-info newpost" href="{% url 'post' %}"><img
+                                src="https://img.icons8.com/ios-glyphs/30/000000/multi-edit.png" /></a>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
