@@ -50,6 +50,9 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True, null=True)
 
 
+    def __str__(self):
+        return f'{self.user.user} Image'
+
     def save_comment(self):
         self.user
 

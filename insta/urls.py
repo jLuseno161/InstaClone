@@ -10,6 +10,8 @@ urlpatterns = [
     path('posts/',views.new_post, name='post'),
     # path('search/', views.search, name='searched_item'),
     path('search/', views.search, name='search'),
+    
+    path('comment/<id>', views.comment, name='comment'),
 
 
 ]

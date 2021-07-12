@@ -22,8 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('insta.urls')),  
     path(r'accounts/', include('registration.backends.simple.urls')),
-    # path(r'logout/', views.logout, {"next_page": '/'}), 
     path(r'logout/', views.LogoutView.as_view(), {"next_page": '/'}), 
 
+  
 
 ]
