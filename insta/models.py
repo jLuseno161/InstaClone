@@ -16,9 +16,8 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()  
 
-    def search_pofile(cls, name):
-        return cls.objects.filter(user__username__icontains=name).all()
- 
+    def search_profile(cls, user):
+        return cls.objects.filter(user__username__icontains=user).all()
 
 class Image(models.Model):
     img_name = models.CharField(max_length=80,blank=True)

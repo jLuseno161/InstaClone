@@ -47,28 +47,14 @@ def new_post(request):
 
     return render(request, 'new_post.html', {"form": form})
 
-# def search_category(request):
-
-#     location=Location.get_locations()
-
-
-#     # Mech.get_mech(item) or Mech.get_mech2(location) or Mech.get_mech3(username)
-
-#     if 'category' in request.GET and request.GET["category"]:
-#         category = request.GET.get("category")
-#         search = Image.search_by_category(category)
-#         message = f"{category}"
-#         return render(request, 'search.html',{"message":message,"category": search,"location":location})
-#     else:
-#         return render(request, 'search.html')
-
 def search(request): 
-    if 'search_item' in request.GET and request.GET['search_item']:
-        item = request.GET.get("search_item")
-        rslts = Profile.search_pofile(item) or Image.search_post(item)
-        message = f'{item}'
-        searched_items=rslts
-        return render(request,'search.html', {'results':searched_items,'message':message})
+    if 'profile' in request.GET and request.GET['profile']:
+        user = request.GET.get("profile")
+        results = Profile.search_profile(user)
+        message = f'user'
+        return render(request, 'search.html',{'results': results,'message': message}
+)
     else:
-        message = "Theres nothin for you here "
-    return render(request, 'search.html')
+        message = "You haven't searched for anything, please try again"
+    return render(request, 'search.html', {'message': message})
+
