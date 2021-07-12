@@ -6,15 +6,15 @@
 
 ## Description
 
-A clone for the instagram application made using Django where a user can upload their images/posts and also view posts made by other people.
+A clone of the instagram application made using Django where a user can upload their images/posts and also view posts made by other people.
 
 ## Live Link
 
-[View Site](https://intaclone0.herokuapp.com)
+[View Site](https://instaclone0.herokuapp.com)
 
 ## Admin Dashboard
 
-[Admin Dashboard Login](https://intaclone0.herokuapp.com/admin/)  with credentials
+[Admin Dashboard Login](https://instaclone0.herokuapp.com/admin/)  with credentials
     username : `moringa`
     password : `Moringa20`
 
@@ -24,7 +24,6 @@ A clone for the instagram application made using Django where a user can upload 
 * User can comment on posts made by other users
 * User is able to view other users pictures on their timeline
 * When user clicks on a single photo it expands it and user is able to view the details of the photo in a modal.
-* User is able to view and copy link to the photo
 
 ## Prerequisites
 
@@ -50,7 +49,6 @@ To get the code..
     - **`pip install virtualenv`**
     - **`virtualenv venv`**
     - **`. venv/bin/activate`**
-
         * Note that you can exit the virtual environment by running the command **`deactivate`**
 4. Download the all dependencies in the requirements.txt using **`pip install -r requirements.txt`**
 5. Launch the application locally by running the command **`python manage.py runserver`** and copying the link given on the termnal on your browser.
