@@ -19,6 +19,9 @@ class Profile(models.Model):
     def search_profile(cls, user):
         return cls.objects.filter(user__username__icontains=user).all()
 
+    def update_profile(cls, id):
+        cls.objects.get(Profile,user_id=id)
+
 class Image(models.Model):
     img_name = models.CharField(max_length=80,blank=True)
     caption = models.CharField(max_length=600)

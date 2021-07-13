@@ -35,18 +35,6 @@ def update_profile(request,id):
     
     return render(request, "registration/update_profile.html", {"form":form, "form2":form2})
 
-    # profile = Profile.objects.get( user_id= request.user)
-    # if request.method == 'POST':
-    #     form = UpdateProfileForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         profile = form.save(commit=False)
-    #         profile.user = request.user
-    #         profile.save()
-    #         return redirect('show_profile',id=profile.id)
-    # else:
-    #     form = UpdateProfileForm()
-    # return render(request, 'registration/update_profile.html',{"form":form} )
-
 @login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user = request.user

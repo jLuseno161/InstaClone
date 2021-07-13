@@ -18,8 +18,13 @@ class ProfileTestCase(TestCase):
 
     def test_save_profile(self):
         self.profile.save_profile()
-        after = Profile.objects.all()
-        self.assertTrue(len(after) > 0)
+        profile = Profile.objects.all()
+        self.assertTrue(len(profile) > 0)
+
+    def test_update_profile(self):
+        self.profile.update_profile(self.profile.id)
+        self.profile.save_profile()
+        self.assertEqual()
 
 class ImageTestClass(TestCase):
     """

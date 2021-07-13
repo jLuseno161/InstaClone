@@ -10,11 +10,11 @@ A sample replica of the instagram application made using Django where a user can
 
 ## Live Link
 
-[View Site](https://instaclone0.herokuapp.com)
+[View Site](https://instaclon4.herokuapp.com)
 
 ## Admin Dashboard
 
-[Admin Dashboard Login](https://instaclone0.herokuapp.com/admin/)  with credentials
+[Admin Dashboard Login](https://instaclon4.herokuapp.com/admin/)  with credentials
     username : `moringa`
     password : `@Moringa20`
 
