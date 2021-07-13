@@ -6,7 +6,7 @@
 
 ## Description
 
-A clone of the instagram application made using Django where a user can upload their images/posts and also view posts made by other people.
+A sample replica of the instagram application made using Django where a user can upload their images/posts and also view posts made by other people.
 
 ## Live Link
 
@@ -16,7 +16,7 @@ A clone of the instagram application made using Django where a user can upload t
 
 [Admin Dashboard Login](https://instaclone0.herokuapp.com/admin/)  with credentials
     username : `moringa`
-    password : `Moringa20`
+    password : `@Moringa20`
 
 ## User Story
 * User can signup & signin to the application

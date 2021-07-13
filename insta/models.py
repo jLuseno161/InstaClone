@@ -39,7 +39,12 @@ class Image(models.Model):
     @classmethod
     def search_post(cls, name):
         return cls.objects.filter(img_name__img__name__icontains=name)
-
+    
+    @classmethod
+    def get_image_by_id(cls, image_id):
+        image = cls.objects.get(id=image_id)
+        return image
+        
     def post_likes(self):
         return self.likes.count()    
 
