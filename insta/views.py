@@ -24,6 +24,7 @@ def show_profile(request):
 
 @login_required(login_url='/accounts/login/')    
 def update_profile(request,id):
+    
     obj = get_object_or_404(Profile,user_id=id)
     obj2 = get_object_or_404(User,id=id)
     form = UpdateProfileForm(request.POST or None, instance = obj)
@@ -54,12 +55,15 @@ def new_post(request):
 
     return render(request, 'new_post.html', {"form": form})
 
+@login_required(login_url='/accounts/login/')
 def search(request): 
     if 'profile' in request.GET and request.GET['profile']:
         user = request.GET.get("profile")
+
+        print(user)
         results = Profile.search_profile(user)
-        message = f'user'
-        return render(request, 'search.html',{'results': results,'message': message})
+        message = f'profile'
+        return render(request, 'search.html',{'profiles': results,'message': message})
     else:
         message = "You haven't searched for anything, please try again"
     return render(request, 'search.html', {'message': message})

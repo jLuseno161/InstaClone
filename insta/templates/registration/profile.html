@@ -6,9 +6,10 @@
         height: 150px;
         overflow: hidden;
         border-radius: 50%;
+        background-color: gray;
     }
 
-    .imag img {
+    .profile_pic img, .imag img{
         width: 100%;
         height: 100%;
     }
@@ -24,7 +25,8 @@
         <div class="media-body view-profile">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>{{user.username}} <a href="{% url 'update_profile' user.id %}" target="_blank"><button class="btn">Edit Profile</button></a> <a href="/"><button
+                    <h2>{{user.username}} <a href="{% url 'update_profile' user.id %}" target="_blank"><button
+                                class="btn">Edit Profile</button></a> <a href="/"><button
                                 class="btn">Settings</button></a>
                     </h2>
                 </div>
