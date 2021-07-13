@@ -6,7 +6,7 @@
 
 ## Description
 
-A sample replica of the instagram application made using Django where a user can upload their images/posts and also view posts made by other people.
+A simple replica of the instagram application made using Django where a user can upload their images/posts and also view posts made by other people.
 
 ## Live Link
 
@@ -55,6 +55,7 @@ To get the code..
 4. Download the all dependencies in the requirements.txt using **`pip install -r requirements.txt`**
 5. Launch the application locally by running the command **`python manage.py runserver`** and copying the link given on the termnal on your browser.
     - To upload photos as admin, run the command  **`python manage.py createsuperuser`** to create an admin account in order to post. Access to the admin panel is by adding the path /admin to the address bar.
+6. Run tests by running the command **`python3.8 manage.py test insta`**
 
 ## Technology used
 

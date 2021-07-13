@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class ProfileTestCase(TestCase):
     """Test for the profile model class"""
     def setUp(self):
-        self.user = User(username='joy')
+        self.user = User(username='moringa')
         self.user.save()
 
         self.profile = Profile(id=1, profile_pic='profile.jpg', bio='this is a test profile',
@@ -22,9 +22,10 @@ class ProfileTestCase(TestCase):
         self.assertTrue(len(profile) > 0)
 
     def test_update_profile(self):
-        self.profile.update_profile(self.profile.id)
         self.profile.save_profile()
-        self.assertEqual()
+        self.profile.update_profile(self.profile.user_id)
+        self.profile.save_profile()
+        self.assertTrue(Profile,self.profile.user)
 
 class ImageTestClass(TestCase):
     """
