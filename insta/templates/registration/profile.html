@@ -24,7 +24,7 @@
         <div class="media-body view-profile">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>{{user.username}} <a href="/"><button class="btn">Edit Profile</button></a> <a href="/"><button
+                    <h2>{{user.username}} <a href="{% url 'update_profile' user.id %}" target="_blank"><button class="btn">Edit Profile</button></a> <a href="/"><button
                                 class="btn">Settings</button></a>
                     </h2>
                 </div>
@@ -83,12 +83,6 @@
 
             </div>
             <div class="card-block">
-                <br>
-                <img src="https://img.icons8.com/material-outlined/24/000000/filled-like.png" />
-                <img src="https://img.icons8.com/material-outlined/24/000000/speech-bubble--v2.png" />
-                <img src="https://img.icons8.com/windows/32/000000/filled-sent.png" />
-                <br>
-
                 <h5 class="card-title"><span class="" style="font-weight: 700;">{{img.profile}}</span>
                     {{img.caption|slice:":20"}}...
                 </h5>

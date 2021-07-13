@@ -22,6 +22,8 @@ A sample replica of the instagram application made using Django where a user can
 * User can signup & signin to the application
 * User can upload their photos
 * User can comment on posts made by other users
+* User is able to edit there profile
+* Current user is able to view their profile with the photos they posted
 * User is able to view other users pictures on their timeline
 * When user clicks on a single photo it expands it and user is able to view the details of the photo in a modal.
 

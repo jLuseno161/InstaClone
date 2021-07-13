@@ -10,17 +10,19 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class ProfileForm(forms.ModelForm):
-
-    class Meta:
-        model = Profile
-        fields = [ 'profile_pic', 'bio']  
+# class UpdateUserForm(forms.ModelForm):
+#     # class Meta:
+#         # model = Profile
+#         # fields = [ 'profile_pic', 'bio']  
+#     email = forms.EmailField(max_length=254, help_text='Required.')
+#     class Meta:
+#         model = User
+#         fields = ('username', 'email')
 
 class UpdateProfileForm(forms.ModelForm):
-    email = forms.EmailField()
     class Meta:
-        model = User
-        fields = ['username','email']
+        model = Profile
+        fields = ['bio','profile_pic']
 
 class  NewPostForm(forms.ModelForm):
     class Meta:

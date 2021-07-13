@@ -1,12 +1,11 @@
 from django.forms.widgets import DateTimeInput
 from django.http.response import HttpResponseRedirect
-from insta.forms import CommentForm, NewPostForm, ProfileForm, UpdateProfileForm
+from insta.forms import CommentForm, NewPostForm, UpdateProfileForm
 from insta.models import Comment, Image, Profile
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
 @login_required(login_url='/accounts/login/')
 def index(request):
     posts = Image.objects.all()
@@ -15,32 +14,39 @@ def index(request):
   
     return render(request,'index.html',{"posts":posts,"profile":profile,"comment":comment})
 
-# @login_required(login_url='/accounts/login/')
-# def newPost(request):
-#     return render(request,'index.html')
-
 @login_required(login_url='/accounts/login/')    
 def show_profile(request):
-    # if request.method == 'POST':
-    #     update_form = ProfileForm(request.POST, request.FILES, instance=request.user)
-    #     if  update_form.is_valid():
-    #         update_form.save()
-    #         return redirect('home')
-    # else:
-    #     update_form = ProfileForm(instance=request.user)
-    #     form = UpdateProfileForm(instance=request.user)
-    # return render(request, 'registration/profile.html',{"update_form":update_form,"form":form} )
-    # u_profile = Profile.objects.filter(post= id)
-    # images = Image.objects.filter(id=id).all()
     current_user= request.user
-
     images= Image.objects.filter(profile=current_user.id).all
-    # post_comment = Comment.objects.filter(post= id)
-    # images = Profile.objects.filter(user=current_user)
 
     return render(request, 'registration/profile.html',{"images":images} )
 
+@login_required(login_url='/accounts/login/')    
+def update_profile(request,id):
 
+    context={}
+    # context["data"] = Profile.objects.get(id=id)
+    obj = get_object_or_404(Profile,user_id=id)
+    form = UpdateProfileForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/"+id)
+    context["form"] = form
+    
+    
+    return render(request, "registration/update_profile.html", context)
+
+    # profile = Profile.objects.get( user_id= request.user)
+    # if request.method == 'POST':
+    #     form = UpdateProfileForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         profile = form.save(commit=False)
+    #         profile.user = request.user
+    #         profile.save()
+    #         return redirect('show_profile',id=profile.id)
+    # else:
+    #     form = UpdateProfileForm()
+    # return render(request, 'registration/update_profile.html',{"form":form} )
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
