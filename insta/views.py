@@ -1,6 +1,7 @@
+from django.contrib.auth.models import User
 from django.forms.widgets import DateTimeInput
 from django.http.response import HttpResponseRedirect
-from insta.forms import CommentForm, NewPostForm, UpdateProfileForm
+from insta.forms import CommentForm, NewPostForm, UpdateProfileForm, UpdateUserForm
 from insta.models import Comment, Image, Profile
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
@@ -23,18 +24,16 @@ def show_profile(request):
 
 @login_required(login_url='/accounts/login/')    
 def update_profile(request,id):
-
-    context={}
-    # context["data"] = Profile.objects.get(id=id)
     obj = get_object_or_404(Profile,user_id=id)
+    obj2 = get_object_or_404(User,id=id)
     form = UpdateProfileForm(request.POST or None, instance = obj)
-    if form.is_valid():
+    form2 = UpdateUserForm(request.POST or None, instance = obj2)
+    if form.is_valid() and form2.is_valid():
         form.save()
-        return HttpResponseRedirect("/"+id)
-    context["form"] = form
+        form2.save()
+        return HttpResponseRedirect("/profile")
     
-    
-    return render(request, "registration/update_profile.html", context)
+    return render(request, "registration/update_profile.html", {"form":form, "form2":form2})
 
     # profile = Profile.objects.get( user_id= request.user)
     # if request.method == 'POST':
