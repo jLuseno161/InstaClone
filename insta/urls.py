@@ -12,6 +12,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('comment/<id>', views.comment, name='comment'),
     path('update/<id>', views.update_profile, name='update_profile'),
+    path('signup/', views.signup, name='signup'),
 
 
 
