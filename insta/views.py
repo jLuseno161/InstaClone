@@ -22,14 +22,22 @@ def signup(request):
             username = request.POST['username']
             password = request.POST['password']
             email = request.POST['email']
+               ######################### mail system ####################################
+            # htmly = get_template('email.html')
+            # d = { 'username': username }
+            # subject, from_email, to = 'WELCOME', 'projectsmoringa@gmail.com', email
+            # html_content = htmly.render(d)
+            # msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
+            # msg.attach_alternative(html_content, "text/html")
+            # msg.send()
+            # print(msg)
             user = User.objects.create_user(username=username, email=email,password=password)
             subject = 'welcome to GFG world'
             message = f'Hi {user.username}, thank you for registering in geeksforgeeks.'
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [user.email, ]
             send_mail( subject, message, email_from, recipient_list )
-            # return HttpResponse('Please confirm your email address to complete the registration')
-            return redirect('index')
+            return HttpResponse('Thank you for registering with us')
     else:
         form = SignUpForm()
     return render(request, 'registration_form.html', {'form': form})
