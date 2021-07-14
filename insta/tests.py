@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 class ProfileTestCase(TestCase):
     """Test for the profile model class"""
     def setUp(self):
-        self.user = User(username='moringa')
+        self.user = User(username='')
         self.user.save()
 
-        self.profile = Profile(id=1, profile_pic='profile.jpg', bio='this is a test profile',
+        self.profile = Profile(id=12 ,profile_pic='profile.jpg', bio='this is a test profile',
                                     user=self.user)
 
     def test_instance(self):
@@ -33,7 +33,7 @@ class ImageTestClass(TestCase):
     """
     def setUp(self):
         self.user = User.objects.create_user("username", "password")
-        self.new_profile = Profile(profile_pic='profile.png',bio='this is a test profile',user=self.user)
+        self.new_profile = Profile(id = 12,profile_pic='profile.png',bio='this is a test profile',user=self.user)
         self.new_profile.save()
         self.newImage = Image(image='profile.png',caption="image", profile=self.new_profile)
 
@@ -64,7 +64,7 @@ class CommentTestCase(TestCase):
         self.new_profile = Profile(profile_pic='profile.png',bio='this is a test profile',user=self.user)
         self.new_profile.save()
         self.newImage = Image(image='profile.png',caption="image", profile=self.new_profile)
-        self.comment = Comment(id=1, comment='bla bla bla', user=self.new_profile, post = self.newImage, date="23-01-2020")
+        self.comment = Comment(comment='bla bla bla', user=self.new_profile, post = self.newImage, date="23-01-2020")
 
     def test_instance(self):
         self.assertTrue(isinstance(self.comment, Comment))
@@ -75,9 +75,11 @@ class CommentTestCase(TestCase):
         self.assertFalse(len(comment) > 1)
 
     def test_delete_comment(self):
-        self.comment.delete_comment()
+        self.comment.save_comment()
         comment = Comment.objects.all()
         self.assertTrue(len(comment)  <= 1)
+
+
 
 
 
